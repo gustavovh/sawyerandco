@@ -43,14 +43,14 @@ export default function ChatBot() {
       <button
         onClick={() => setOpen(!open)}
         data-testid="chatbot-toggle"
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#0066FF] text-white shadow-2xl hover:scale-105 transition-transform flex items-center justify-center"
+        className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-[#0066FF] text-white shadow-2xl hover:scale-105 transition-transform flex items-center justify-center"
         aria-label="Open chat"
       >
         {open ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
       </button>
 
       {open && (
-        <div className="fixed bottom-24 right-6 z-50 w-[calc(100%-3rem)] sm:w-96 h-[560px] max-h-[80vh] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden" data-testid="chatbot-window">
+        <div className="fixed bottom-24 left-6 z-50 w-[calc(100%-3rem)] sm:w-96 h-[560px] max-h-[80vh] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden" data-testid="chatbot-window">
           <div className="bg-[#0F2557] text-white p-4 flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-[#0066FF] flex items-center justify-center">
               <Sparkles className="w-4 h-4" />
