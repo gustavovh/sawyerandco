@@ -1,0 +1,135 @@
+{
+  "project_name": "Mortgage Lead Generation Landing Page",
+  "theme_strategy": {
+    "theme": "Light",
+    "archetype": "Archetype 4 (Swiss & High-Contrast) + Archetype 1 (Organic Trust)",
+    "description": "Modern fintech aesthetic. Clean white backgrounds, crisp structural borders, deep authoritative navy for typography, and electric blue for conversion CTAs. Trust-led, highly scannable, secure-by-design."
+  },
+  "typography": {
+    "heading_font": "Outfit",
+    "body_font": "Manrope",
+    "font_imports": [
+      "@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');",
+      "@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap');"
+    ],
+    "scale": {
+      "h1": "text-5xl md:text-6xl tracking-tight leading-tight font-semibold text-primary",
+      "h2": "text-3xl md:text-4xl tracking-tight leading-snug font-semibold text-primary",
+      "h3": "text-xl md:text-2xl font-medium text-primary",
+      "body": "text-base md:text-lg text-slate-600 leading-relaxed font-normal",
+      "numbers": "tabular-nums font-semibold"
+    }
+  },
+  "colors": {
+    "background": "#FAFAFA",
+    "surface": "#FFFFFF",
+    "primary": "#0F2557",
+    "primary_foreground": "#FFFFFF",
+    "accent_blue": "#0066FF",
+    "accent_blue_hover": "#0052CC",
+    "muted_gray": "#F3F4F6",
+    "border_color": "#E5E7EB",
+    "text_main": "#1E293B",
+    "text_muted": "#64748B",
+    "success": "#10B981"
+  },
+  "spacing_and_layout": {
+    "container_padding": "px-6 md:px-12 lg:px-24",
+    "section_spacing": "py-20 md:py-32",
+    "bento_gap": "gap-6 md:gap-8",
+    "radius": "rounded-xl md:rounded-2xl",
+    "shadows": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+    "surface_styles": {
+      "card": "bg-white border border-gray-100 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8",
+      "glass": "bg-white/80 backdrop-blur-xl border border-white/20"
+    }
+  },
+  "media": {
+    "image_urls": {
+      "hero_advisor": {
+        "url": "https://images.unsplash.com/photo-1551135049-8a33b5883817?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwzfHxmaW5hbmNpYWwlMjBhZHZpc29yJTIwbWVldGluZ3xlbnwwfHx8fDE3ODEyMjA0Mzl8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Young family reviewing home options with a mortgage advisor. Use in Hero section.",
+        "alt": "Family meeting with mortgage advisor"
+      },
+      "lead_magnet_bg": {
+        "url": "https://images.unsplash.com/photo-1709787627975-9cb37bbeca60?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwxfHxmYW1pbHklMjBidXlpbmclMjBob21lfGVufDB8fHx8MTc4MTIyMDQzOXww&ixlib=rb-4.1.0&q=85",
+        "description": "Family sitting in front of a house. Use as background or side image for the 2026 First-Time Homebuyer Guide.",
+        "alt": "First time homebuyers in front of house"
+      }
+    },
+    "logos": {
+      "instruction": "Use lucide-react icons combined with typography to construct clean, scalable sponsor/partner logos (e.g., Rocket, Better.com, LendingTree) instead of raster images. For Better use Building icon, LendingTree use TreePine, Rocket use Rocket icon. This maintains the premium fintech aesthetic and ensures perfect white-labeling without using forbidden placeholders."
+    }
+  },
+  "components_and_sections": {
+    "navigation": {
+      "style": "Crystal Glass sticky header. bg-white/80 backdrop-blur-xl border-b border-gray-200. High contrast nav links.",
+      "elements": "Brand Logo, Products, Rates, About, CTA Button (Get Pre-Qualified)"
+    },
+    "hero_section": {
+      "layout": "Asymmetrical 2-column grid. Left: Text + CTAs. Right: Image with overlapping Trust Badge.",
+      "headline": "Find Out How Much Home You Can Afford in 60 Seconds",
+      "ctas": {
+        "primary": "Calculate My Budget (Electric Blue bg, White text, robust hover scale)",
+        "secondary": "Get Pre-Qualified (Outline button, Navy text, Gray border)"
+      },
+      "trust_strip": "Horizontal scrolling marquee or flex row with 4 distinct logos (inspired by Rocket, Better, etc.)"
+    },
+    "affordability_calculator": {
+      "layout": "Bento Grid Split. Left: Active form step. Right: Value proposition or 'Locked' estimate teasing the result.",
+      "flow": "Income -> Debt -> Down Payment -> Credit Score Range -> State -> Lead Capture Form (First, Last, Email, Phone, ZIP)",
+      "ux_rules": "Use large tap targets, slider inputs for numbers (Shadcn Slider), and large Select buttons for Credit Score. Final step MUST gate the results. Once lead form is submitted, transition to Results View.",
+      "results_view": "Shows Home Price Range, Monthly Payment, and Recommended Loan Programs using Recharts for visual breakdown."
+    },
+    "benefits_section": {
+      "layout": "2x2 Grid of premium cards.",
+      "style": "Neumorphic / Clean cards with 1px border. Deep blue icons.",
+      "items": ["Instant Estimate", "Compare Options", "First-Time Guidance", "Mortgage Experts"]
+    },
+    "mortgage_programs": {
+      "layout": "Horizontal scroll or flex wrap of tall cards.",
+      "cards": ["Conventional", "FHA", "VA", "Jumbo", "Investment"],
+      "interaction": "Hover lifts card (-translate-y-2) and turns border Electric Blue."
+    },
+    "lead_magnet": {
+      "layout": "Full width colored section (Navy Blue bg). Left: Text & email capture. Right: Image of home.",
+      "title": "2026 First-Time Homebuyer Guide"
+    },
+    "faq": {
+      "layout": "Centered narrow container.",
+      "component": "Shadcn Accordion. Minimal borders, clean typography."
+    },
+    "ai_chatbot": {
+      "layout": "Fixed bottom right floating button. Opens a chat interface window.",
+      "style": "Header in Navy, bubbles in Electric Blue & Light Gray."
+    },
+    "footer": {
+      "layout": "Dark background (Navy). Large logo, multiple link columns, and comprehensive legal disclaimer text at bottom (tiny text)."
+    },
+    "admin_dashboard": {
+      "layout": "Sidebar Navigation + Main Content Area.",
+      "style": "Control Room Grid. Extremely dense, functional. Background #F3F4F6.",
+      "components": [
+        "Top Metric Cards (Total Leads, Conversion Rate)",
+        "Lead Data Table (Shadcn Table) with status badges",
+        "Lead Source charts (Recharts - Pie/Bar)",
+        "Actions: CSV Export button, Status Select dropdown"
+      ]
+    }
+  },
+  "interactive_and_motion": {
+    "button_hover": "Hover state must be a lighter hue. focus:ring-2 focus:ring-offset-2 focus:ring-[#0066FF].",
+    "page_load": "Fade up elements using Framer Motion (y: 20 -> 0, opacity: 0 -> 1) staggered.",
+    "calculator_transition": "Smooth horizontal slide for step transitions."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure all text against gray/blue backgrounds meets 4.5:1 ratio.",
+    "testing_attributes": "All interactive and key informational elements MUST include data-testid attributes (e.g., data-testid='calc-next-step', data-testid='lead-submit', data-testid='hero-cta')."
+  },
+  "tech_stack_instructions": {
+    "icons": "Use 'lucide-react' for all iconography and logos.",
+    "charts": "Use 'recharts' for the admin dashboard and calculator results.",
+    "forms": "Use Shadcn Form, Input, Select, and Slider for the calculator.",
+    "animations": "Use framer-motion."
+  }
+}
