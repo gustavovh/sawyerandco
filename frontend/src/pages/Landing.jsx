@@ -11,6 +11,9 @@ import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
 import ChatBot from "@/components/sections/ChatBot";
 
+// Importa tu nuevo componente
+import PreQualifyForm from "@/components/sections/PreQualifyForm";
+
 export default function Landing() {
   return (
     <div className="min-h-screen bg-white" data-testid="landing-page">
@@ -20,6 +23,8 @@ export default function Landing() {
         <Calculator />
         <Trust />
         <Benefits />
+        {/* Aquí se muestra tu formulario GHL */}
+        <PreQualifyForm />
         <LeadMagnet />
         <Programs />
         <FAQ />
@@ -30,3 +35,4 @@ export default function Landing() {
     </div>
   );
 }
+
