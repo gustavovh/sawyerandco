@@ -1,5 +1,7 @@
 import React from "react";
-import { Home, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
+
+const LOGO_URL = "https://customer-assets.emergentagent.com/job_mortgage-prequalify/artifacts/19i5630p_image.png";
 
 export default function Footer() {
   return (
@@ -7,17 +9,14 @@ export default function Footer() {
       <div className="container-x py-16">
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-[#0066FF] flex items-center justify-center">
-                <Home className="w-5 h-5 text-white" />
-              </div>
-              <span className="font-heading font-bold text-xl text-white">Northcrest</span>
+            <div className="bg-white rounded-xl p-3 inline-block mb-4">
+              <img src={LOGO_URL} alt="Sawyer & Company" className="h-12 w-auto object-contain" />
             </div>
             <p className="text-sm text-blue-200/80 leading-relaxed">
               Connecting U.S. homebuyers with licensed mortgage professionals since 2018.
             </p>
             <div className="mt-5 space-y-2 text-sm">
-              <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5" /> hello@northcrest.example</p>
+              <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5" /> hello@sawyerandco.example</p>
               <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> 1-800-555-0199</p>
               <p className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5" /> Austin, TX · Remote U.S.</p>
             </div>
@@ -56,7 +55,7 @@ export default function Footer() {
 
         <div className="mt-14 pt-8 border-t border-white/10 text-[11px] text-blue-300/70 leading-relaxed">
           <p data-testid="footer-disclaimer">
-            <strong className="text-blue-200">Mortgage Disclaimer:</strong> Northcrest is a mortgage marketplace and not a direct lender. Loan products are offered by independent, licensed third-party lenders. Rates, terms, and approval are subject to lender review and underwriting. Pre-qualification is not a commitment to lend. APR shown is illustrative. Equal Housing Opportunity. NMLS ID #1234567 (sample). © {new Date().getFullYear()} Northcrest Mortgage, Inc. All rights reserved.
+            <strong className="text-blue-200">Mortgage Disclaimer:</strong> Sawyer & Company is a mortgage marketplace and not a direct lender. Loan products are offered by independent, licensed third-party lenders. Rates, terms, and approval are subject to lender review and underwriting. Pre-qualification is not a commitment to lend. APR shown is illustrative. Equal Housing Opportunity. NMLS ID #1234567 (sample). © {new Date().getFullYear()} Sawyer & Company, Inc. All rights reserved.
           </p>
         </div>
       </div>

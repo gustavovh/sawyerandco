@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { Home, LogOut, Download, Users, TrendingUp, Activity, Filter, Search, X } from "lucide-react";
+import { LogOut, Download, Users, TrendingUp, Activity, Filter, Search } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { api, API, formatMoney } from "@/lib/api";
 import { Input } from "@/components/ui/input";
@@ -97,11 +97,8 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-[#F3F4F6]" data-testid="admin-dashboard">
       {/* Sidebar */}
       <aside className="hidden lg:flex fixed top-0 left-0 w-64 h-full bg-white border-r border-gray-200 flex-col">
-        <Link to="/" className="px-6 py-5 flex items-center gap-2 border-b border-gray-100">
-          <div className="w-8 h-8 rounded-lg bg-[#0F2557] flex items-center justify-center">
-            <Home className="w-4 h-4 text-white" />
-          </div>
-          <span className="font-heading font-bold text-[#0F2557]">Northcrest</span>
+        <Link to="/" className="px-6 py-4 flex items-center border-b border-gray-100">
+          <img src="https://customer-assets.emergentagent.com/job_mortgage-prequalify/artifacts/19i5630p_image.png" alt="Sawyer & Company" className="h-10 w-auto object-contain" />
         </Link>
         <nav className="flex-1 p-3 space-y-1">
           <a href="#leads" className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-blue-50 text-[#0066FF] font-medium text-sm">

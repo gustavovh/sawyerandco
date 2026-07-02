@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Home } from "lucide-react";
+import { Menu, X } from "lucide-react";
+
+const LOGO_URL = "https://customer-assets.emergentagent.com/job_mortgage-prequalify/artifacts/19i5630p_image.png";
 
 const NAV = [
   { label: "Calculator", href: "#calculator" },
@@ -17,12 +19,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-gray-200/70">
       <div className="container-x flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center gap-2 group" data-testid="nav-logo">
-          <div className="w-9 h-9 rounded-xl bg-[#0F2557] flex items-center justify-center">
-            <Home className="w-5 h-5 text-white" />
-          </div>
-          <span className="font-heading font-bold text-lg text-[#0F2557]">Northcrest</span>
-          <span className="hidden sm:inline text-sm text-slate-500 -ml-1">Mortgage</span>
+        <Link to="/" className="flex items-center group" data-testid="nav-logo">
+          <img src={LOGO_URL} alt="Sawyer & Company" className="h-10 md:h-12 w-auto object-contain" />
         </Link>
 
         {isLanding && (

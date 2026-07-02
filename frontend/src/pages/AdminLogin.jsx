@@ -1,5 +1,7 @@
 import React from "react";
-import { Home, ShieldCheck, Lock } from "lucide-react";
+import { ShieldCheck, Lock } from "lucide-react";
+
+const LOGO_URL = "https://customer-assets.emergentagent.com/job_mortgage-prequalify/artifacts/19i5630p_image.png";
 
 // REMINDER: DO NOT HARDCODE THE URL, OR ADD ANY FALLBACKS OR REDIRECT URLS, THIS BREAKS THE AUTH
 export default function AdminLogin() {
@@ -11,11 +13,8 @@ export default function AdminLogin() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] p-6">
       <div className="w-full max-w-md">
-        <div className="flex items-center justify-center gap-2 mb-8">
-          <div className="w-10 h-10 rounded-xl bg-[#0F2557] flex items-center justify-center">
-            <Home className="w-5 h-5 text-white" />
-          </div>
-          <span className="font-heading font-bold text-xl text-[#0F2557]">Northcrest</span>
+        <div className="flex items-center justify-center mb-8">
+          <img src={LOGO_URL} alt="Sawyer & Company" className="h-14 w-auto object-contain" />
         </div>
 
         <div className="bg-white rounded-2xl border border-gray-100 p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
@@ -43,7 +42,7 @@ export default function AdminLogin() {
         </div>
 
         <p className="text-center text-xs text-slate-500 mt-6">
-          Need help? Contact <a className="underline" href="mailto:support@northcrest.example">support@northcrest.example</a>
+          Need help? Contact <a className="underline" href="mailto:support@sawyerandco.example">support@sawyerandco.example</a>
         </p>
       </div>
     </div>
