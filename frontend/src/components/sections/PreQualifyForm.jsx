@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function PreQualifyForm() {
   return (
     <section id="prequalify" className="section bg-white">
