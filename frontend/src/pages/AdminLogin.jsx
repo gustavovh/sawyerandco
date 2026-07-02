@@ -14,7 +14,7 @@ export default function AdminLogin() {
     <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] p-6">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center mb-8">
-          <img src={LOGO_URL} alt="Sawyer & Company" className="h-14 w-auto object-contain" />
+          <img src={LOGO_URL} alt="Sawyer & Company" className="h-28 w-auto object-contain" />
         </div>
 
         <div className="bg-white rounded-2xl border border-gray-100 p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">

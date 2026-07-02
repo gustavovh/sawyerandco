@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-1">
             <div className="bg-white rounded-xl p-3 inline-block mb-4">
-              <img src={LOGO_URL} alt="Sawyer & Company" className="h-12 w-auto object-contain" />
+              <img src={LOGO_URL} alt="Sawyer & Company" className="h-24 w-auto object-contain" />
             </div>
             <p className="text-sm text-blue-200/80 leading-relaxed">
               Connecting U.S. homebuyers with licensed mortgage professionals since 2018.

@@ -18,9 +18,9 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-gray-200/70">
-      <div className="container-x flex items-center justify-between h-16 md:h-20">
+      <div className="container-x flex items-center justify-between h-20 md:h-28">
         <Link to="/" className="flex items-center group" data-testid="nav-logo">
-          <img src={LOGO_URL} alt="Sawyer & Company" className="h-10 md:h-12 w-auto object-contain" />
+          <img src={LOGO_URL} alt="Sawyer & Company" className="h-20 md:h-24 w-auto object-contain" />
         </Link>
 
         {isLanding && (

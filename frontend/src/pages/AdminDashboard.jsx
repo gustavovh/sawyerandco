@@ -98,7 +98,7 @@ export default function AdminDashboard() {
       {/* Sidebar */}
       <aside className="hidden lg:flex fixed top-0 left-0 w-64 h-full bg-white border-r border-gray-200 flex-col">
         <Link to="/" className="px-6 py-4 flex items-center border-b border-gray-100">
-          <img src="https://customer-assets.emergentagent.com/job_mortgage-prequalify/artifacts/19i5630p_image.png" alt="Sawyer & Company" className="h-10 w-auto object-contain" />
+          <img src="https://customer-assets.emergentagent.com/job_mortgage-prequalify/artifacts/19i5630p_image.png" alt="Sawyer & Company" className="h-20 w-auto object-contain" />
         </Link>
         <nav className="flex-1 p-3 space-y-1">
           <a href="#leads" className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-blue-50 text-[#0066FF] font-medium text-sm">
