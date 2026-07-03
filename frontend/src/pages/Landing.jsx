@@ -12,7 +12,7 @@ import Footer from "@/components/sections/Footer";
 import ChatBot from "@/components/sections/ChatBot";
 
 // Importa tu nuevo componente
-import PreQualifyForm from "@/components/sections/PreQualifyForm";
+import PreQualifyForm from "../components/sections/PreQualifyForm";
 
 export default function Landing() {
   return (
