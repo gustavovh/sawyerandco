@@ -292,13 +292,21 @@ async def create_lead(lead: LeadCreate):
         "notes": "",
         "created_at": now,
     }
-    await db.leads.insert_one(doc)
-    # MOCKED notifications (email/SMS/CRM) – logged only
-    logger.info(f"[MOCK EMAIL] New lead notification to admin: {lead.email}")
-    logger.info(f"[MOCK SMS] New lead SMS notification for: {lead.phone}")
-    logger.info(f"[MOCK CRM] Pushed lead {lead_id} to external CRM (HubSpot/Salesforce stub)")
-    doc.pop("_id", None)
-    return Lead(**doc)
+await db.leads.insert_one(doc)
+
+try:
+
+    ghl = await create_contact(lead)
+
+    logger.info(f"GHL Contact Created: {ghl}")
+
+except Exception as e:
+
+    logger.exception(e)
+
+doc.pop("_id", None)
+
+return Lead(**doc)
 
 
 @api_router.post("/subscribers")
