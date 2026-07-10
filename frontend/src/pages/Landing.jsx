@@ -11,7 +11,7 @@ import Footer from "../components/sections/Footer";
 import ChatBot from "../components/sections/ChatBot";
 
 // Importa tu nuevo componente
-import PreQualifyForm from "../components/sections/PreQualifyForm";
+
 
 export default function Landing() {
   return (
@@ -20,7 +20,6 @@ export default function Landing() {
       <main>
         <Hero />
         {/* Reemplazamos el Calculator original por el formulario GHL */}
-        <PreQualifyForm />
         <Trust />
         <Benefits />
         <LeadMagnet />
