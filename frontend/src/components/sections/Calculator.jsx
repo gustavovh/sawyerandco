@@ -22,9 +22,11 @@ const CREDIT_OPTIONS = [
 const STEPS = ["Income", "Debts", "Down Payment", "Credit", "Location", "Your Info"];
 
 export default function Calculator() {
+
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState(null);
+
   const [form, setForm] = useState({
     annual_income: 85000,
     monthly_debt: 400,
@@ -37,6 +39,17 @@ export default function Calculator() {
     phone: "",
     zip_code: "",
   });
+
+  console.log({
+    first_name: form.first_name,
+    last_name: form.last_name,
+    email: form.email,
+    phone: form.phone,
+    zip: form.zip_code,
+    canNext: canNext(),
+  });
+
+  // resto del código...
 
   const update = (k, v) => setForm((f) => ({ ...f, [k]: v }));
   const progress = useMemo(() => ((step + 1) / STEPS.length) * 100, [step]);
