@@ -13,6 +13,7 @@ from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional, Literal
 from datetime import datetime, timezone, timedelta
 import httpx
+from ghl_service import create_contact
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
