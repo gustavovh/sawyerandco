@@ -86,6 +86,10 @@ async function makeGHLRequest(method, endpoint, body = null, apiKey) {
     options.body = JSON.stringify(body);
   }
 
+  if (method === "POST" && endpoint === `/contacts/upsert?locationId=${body?.locationId || ""}`) {
+    // no-op guard; actual upsert diagnostic logging is implemented in upsertContact
+  }
+
   try {
     const response = await fetch(url, options);
     logRequest(method, url, response.status, {
@@ -107,6 +111,7 @@ async function makeGHLRequest(method, endpoint, body = null, apiKey) {
       status: response.status,
       data: parsedData,
       rawBody,
+      headers: Object.fromEntries(response.headers.entries()),
     };
   } catch (error) {
     console.error(`[Network Error] ${method} ${endpoint}:`, error.message);
@@ -422,12 +427,51 @@ async function upsertContact(contactPayload, locationId, apiKey) {
       `[Contact] Upserting contact with email: ${contactPayload.email}`
     );
 
+    const endpoint = `/contacts/upsert?locationId=${locationId}`;
+    const requestUrl = `${GHL_BASE_URL}${endpoint}`;
+    const requestMethod = "POST";
+    const requestHeaders = {
+      Authorization: "Bearer [REDACTED]",
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Version: "2021-07-28",
+    };
+
+    console.log("=================================================");
+    console.log("UPSERT REQUEST");
+    console.log("=================================================");
+    console.log("REQUEST URL");
+    console.log(requestUrl);
+    console.log("");
+    console.log("REQUEST METHOD");
+    console.log(requestMethod);
+    console.log("");
+    console.log("REQUEST HEADERS");
+    console.log(JSON.stringify(requestHeaders, null, 2));
+    console.log("");
+    console.log("REQUEST BODY");
+    console.log(JSON.stringify(contactPayload, null, 2));
+    console.log("=================================================");
+
     const response = await makeGHLRequest(
-      "POST",
-      `/contacts/upsert?locationId=${locationId}`,
+      requestMethod,
+      endpoint,
       contactPayload,
       apiKey
     );
+
+    console.log("=================================================");
+    console.log("UPSERT RESPONSE");
+    console.log("=================================================");
+    console.log("Status Code");
+    console.log(response.status);
+    console.log("");
+    console.log("Response Headers");
+    console.log(JSON.stringify(response.headers || {}, null, 2));
+    console.log("");
+    console.log("Raw Response Body");
+    console.log(response.rawBody);
+    console.log("=================================================");
 
     if (!response.ok) {
       throw new Error(
