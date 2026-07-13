@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Slider } from "@/components/ui/slider";
@@ -303,7 +304,19 @@ export default function Calculator() {
 }
 
 function ResultView({ result, form, onReset }) {
-  return (
+useEffect(() => {
+  const script = document.createElement("script");
+  script.src = "https://link.msgsndr.com/js/form_embed.js";
+  script.async = true;
+
+  document.body.appendChild(script);
+
+  return () => {
+    document.body.removeChild(script);
+  };
+}, []);
+  
+return (
     <div data-testid="calc-result-view">
       <div className="flex items-center gap-2 text-emerald-600 text-sm font-semibold mb-2">
         <CheckCircle2 className="w-4 h-4" /> Your estimate is ready
@@ -354,9 +367,45 @@ function ResultView({ result, form, onReset }) {
       </div>
 
       <div className="mt-8 flex flex-col sm:flex-row gap-3">
-        <a href="#programs" className="btn-primary flex-1 justify-center">Explore loan programs</a>
-        <button onClick={onReset} className="btn-outline" data-testid="calc-reset-btn">Recalculate</button>
-      </div>
-    </div>
+  <a href="#programs" className="btn-primary flex-1 justify-center">
+    Explore loan programs
+  </a>
+
+  <button
+    onClick={onReset}
+    className="btn-outline"
+    data-testid="calc-reset-btn"
+  >
+    Recalculate
+  </button>
+</div>
+
+{/* ================= GHL FORM ================= */}
+
+<div className="mt-12 border-t pt-10">
+
+  <h2 className="font-heading text-3xl font-semibold text-[#0F2557] mb-3">
+    Final Step
+  </h2>
+
+  <p className="text-slate-600 mb-6">
+    Complete this short form and one of our licensed mortgage advisors
+    will contact you to discuss your personalized estimate.
+  </p>
+
+  <iframe
+    src="https://api.leadconnectorhq.com/widget/form/0vodT8LE8uNLmKeFbnvx"
+    style={{
+      width: "100%",
+      height: "760px",
+      border: "none",
+      borderRadius: "12px",
+    }}
+    title="Mortgage Prequalification"
+  />
+
+</div>
+
   );
 }
+
