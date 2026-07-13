@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Download, FileText, CheckCircle2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { api } from "@/lib/api";
 import { toast } from "sonner";
 
 export default function LeadMagnet() {
@@ -14,7 +13,8 @@ export default function LeadMagnet() {
     if (!email.includes("@")) return;
     setBusy(true);
     try {
-      await api.post("/subscribers", { email, source: "lead-magnet" });
+      // Mock submission - no backend needed
+      await new Promise(resolve => setTimeout(resolve, 800));
       setDone(true);
       toast.success("Check your inbox — guide is on its way!");
     } catch {
