@@ -93,15 +93,195 @@ async function makeGHLRequest(method, endpoint, body = null, apiKey) {
       endpoint: endpoint.split("?")[0],
     });
 
+    const rawBody = await response.text();
+    let parsedData = null;
+
+    try {
+      parsedData = rawBody ? JSON.parse(rawBody) : null;
+    } catch (parseError) {
+      parsedData = { rawBody };
+    }
+
     return {
       ok: response.ok,
       status: response.status,
-      data: await response.json(),
+      data: parsedData,
+      rawBody,
     };
   } catch (error) {
     console.error(`[Network Error] ${method} ${endpoint}:`, error.message);
     throw error;
   }
+}
+
+/**
+ * Temporary diagnostic helper to log token/location/account context prior to upsert.
+ *
+ * Attempts official token-context endpoints first:
+ * 1) /users/me (authenticated user context)
+ * 2) /locations/search (accessible locations for token)
+ *
+ * If these do not return actionable data, falls back to:
+ * 3) /locations/{locationId} (configured location lookup)
+ */
+async function logLeadConnectorAuthDiagnostics(locationId, apiKey) {
+  console.log(`[Diagnostic] Starting LeadConnector authorization diagnostics`);
+
+  const locationIds = new Set();
+  const accountInfo = [];
+
+  const extractDiagnostics = (data) => {
+    const extractedLocationIds = [];
+    const extractedAccounts = [];
+
+    const walk = (value) => {
+      if (!value || typeof value !== "object") return;
+
+      if (Array.isArray(value)) {
+        value.forEach(walk);
+        return;
+      }
+
+      if (typeof value.id === "string") {
+        const hasLocationSignals =
+          Object.prototype.hasOwnProperty.call(value, "locationId") ||
+          Object.prototype.hasOwnProperty.call(value, "locationName") ||
+          Object.prototype.hasOwnProperty.call(value, "address") ||
+          Object.prototype.hasOwnProperty.call(value, "timezone") ||
+          Object.prototype.hasOwnProperty.call(value, "companyId") ||
+          Object.prototype.hasOwnProperty.call(value, "companyName");
+
+        if (hasLocationSignals) {
+          extractedLocationIds.push(value.id);
+        }
+      }
+
+      if (typeof value.locationId === "string") {
+        extractedLocationIds.push(value.locationId);
+      }
+
+      if (
+        typeof value.companyId === "string" ||
+        typeof value.companyName === "string" ||
+        typeof value.name === "string" ||
+        typeof value.email === "string"
+      ) {
+        extractedAccounts.push({
+          id: value.id || null,
+          locationId: value.locationId || null,
+          companyId: value.companyId || null,
+          companyName: value.companyName || null,
+          name: value.name || null,
+          email: value.email || null,
+          role: value.role || null,
+          type: value.type || null,
+        });
+      }
+
+      Object.values(value).forEach(walk);
+    };
+
+    walk(data);
+
+    return {
+      extractedLocationIds,
+      extractedAccounts,
+    };
+  };
+
+  const endpoints = [
+    {
+      method: "GET",
+      endpoint: "/users/me",
+      label: "Authenticated user context (/users/me)",
+    },
+    {
+      method: "GET",
+      endpoint: "/locations/search",
+      label: "Accessible locations context (/locations/search)",
+    },
+  ];
+
+  let foundActionableContext = false;
+
+  for (const request of endpoints) {
+    try {
+      const response = await makeGHLRequest(
+        request.method,
+        request.endpoint,
+        null,
+        apiKey
+      );
+
+      console.log(
+        `[Diagnostic] ${request.label} status: ${response.status}`
+      );
+      console.log(
+        `[Diagnostic] ${request.label} raw response body: ${response.rawBody}`
+      );
+
+      const { extractedLocationIds, extractedAccounts } = extractDiagnostics(
+        response.data
+      );
+
+      extractedLocationIds.forEach((id) => locationIds.add(id));
+      extractedAccounts.forEach((info) => accountInfo.push(info));
+
+      if (extractedLocationIds.length > 0 || extractedAccounts.length > 0) {
+        foundActionableContext = true;
+      }
+    } catch (error) {
+      console.error(
+        `[Diagnostic] ${request.label} request failed:`,
+        error.message
+      );
+    }
+  }
+
+  // Fallback requested: if no such endpoint exists / no actionable context returned,
+  // call official Get Location endpoint for configured locationId.
+  if (!foundActionableContext) {
+    try {
+      const response = await makeGHLRequest(
+        "GET",
+        `/locations/${locationId}`,
+        null,
+        apiKey
+      );
+
+      console.log(
+        `[Diagnostic] Get Location fallback (/locations/${locationId}) status: ${response.status}`
+      );
+      console.log(
+        `[Diagnostic] Get Location fallback (/locations/${locationId}) raw response body: ${response.rawBody}`
+      );
+
+      const { extractedLocationIds, extractedAccounts } = extractDiagnostics(
+        response.data
+      );
+
+      extractedLocationIds.forEach((id) => locationIds.add(id));
+      extractedAccounts.forEach((info) => accountInfo.push(info));
+    } catch (error) {
+      console.error(
+        `[Diagnostic] Get Location fallback (/locations/${locationId}) request failed:`,
+        error.message
+      );
+    }
+  }
+
+  console.log(
+    `[Diagnostic] Location IDs discovered: ${JSON.stringify(
+      Array.from(locationIds)
+    )}`
+  );
+  console.log(
+    `[Diagnostic] Company/account information discovered: ${JSON.stringify(
+      accountInfo
+    )}`
+  );
+
+  console.log(`[Diagnostic] Completed LeadConnector authorization diagnostics`);
 }
 
 /**
@@ -416,14 +596,17 @@ exports.handler = async (event) => {
     // Step 1: Build contact payload using standard fields and custom fields array
     const contactPayload = buildContactPayload(payload);
 
-    // Step 2: Upsert contact (create if new, update if exists by email)
+    // Step 2 (temporary diagnostic): Resolve token/account/location context before upsert
+    await logLeadConnectorAuthDiagnostics(locationId, apiKey);
+
+    // Step 3: Upsert contact (create if new, update if exists by email)
     const contactId = await upsertContact(
       contactPayload,
       locationId,
       apiKey
     );
 
-    // Step 3: Apply tag to contact (non-blocking)
+    // Step 4: Apply tag to contact (non-blocking)
     await applyTag(contactId, locationId, apiKey);
 
     // Success response
