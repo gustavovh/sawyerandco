@@ -2,7 +2,7 @@
 base = "frontend"
 command = "yarn build"
 publish = "build"
-functions = "netlify/functions"
+functions = "../netlify/functions"
 
 [build.environment]
 NODE_VERSION = "20"
