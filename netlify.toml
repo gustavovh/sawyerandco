@@ -6,7 +6,6 @@ functions = "../netlify/functions"
 
 [build.environment]
 NODE_VERSION = "20"
-NODE_ENV = "production"
 
 [[redirects]]
 from = "/*"
