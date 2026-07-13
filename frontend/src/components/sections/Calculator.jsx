@@ -40,17 +40,6 @@ export default function Calculator() {
     zip_code: "",
   });
 
-  console.log({
-    first_name: form.first_name,
-    last_name: form.last_name,
-    email: form.email,
-    phone: form.phone,
-    zip: form.zip_code,
-    canNext: canNext(),
-  });
-
-  // resto del código...
-
   const update = (k, v) => setForm((f) => ({ ...f, [k]: v }));
   const progress = useMemo(() => ((step + 1) / STEPS.length) * 100, [step]);
 
