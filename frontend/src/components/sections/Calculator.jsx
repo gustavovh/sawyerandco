@@ -22,9 +22,8 @@ import {
   CheckCircle2,
   TrendingUp,
   Loader2,
-  AlertCircle,
 } from "lucide-react";
-import { formatMoney, callNetlifyFunction } from "@/lib/api";
+import { formatMoney } from "@/lib/api";
 import { calculateEstimate } from "@/lib/calculator";
 import { toast } from "sonner";
 
@@ -470,82 +469,18 @@ export default function Calculator() {
 }
 
 function ResultView({ result, form, onReset }) {
-  const [leadForm, setLeadForm] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-  });
-  const [leadSubmitting, setLeadSubmitting] = useState(false);
-  const [leadError, setLeadError] = useState(null);
-  const [leadSuccess, setLeadSuccess] = useState(false);
+  useEffect(() => {
+    const scriptId = "msgsndr-form-embed";
 
-  const updateLeadForm = (k, v) =>
-    setLeadForm((f) => ({ ...f, [k]: v }));
+    if (document.getElementById(scriptId)) return;
 
-  const submitLead = async () => {
-    // Validation
-    if (
-      !leadForm.first_name ||
-      !leadForm.last_name ||
-      !leadForm.email.includes("@") ||
-      leadForm.phone.length < 7
-    ) {
-      setLeadError("Please fill in all fields correctly.");
-      return;
-    }
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.src = "https://link.msgsndr.com/js/form_embed.js";
+    script.async = true;
 
-    setLeadSubmitting(true);
-    setLeadError(null);
-
-    try {
-      // Call Netlify function to create lead in GoHighLevel
-      await callNetlifyFunction("createLead", {
-        first_name: leadForm.first_name,
-        last_name: leadForm.last_name,
-        email: leadForm.email,
-        phone: leadForm.phone,
-        state: form.state,
-        annual_income: Number(form.annual_income),
-        monthly_debt: Number(form.monthly_debt),
-        down_payment: Number(form.down_payment),
-        credit_score: form.credit_score,
-        home_price_low: result.home_price_low,
-        home_price_high: result.home_price_high,
-        monthly_payment: result.monthly_payment,
-        estimated_rate: result.estimated_rate,
-        dti_ratio: result.dti_ratio,
-        loan_programs: result.loan_programs.join(", "),
-      });
-
-      setLeadSuccess(true);
-      toast.success(
-        "Success! A loan advisor will contact you within 24 hours."
-      );
-
-      // Reset after 3 seconds
-      setTimeout(() => {
-        onReset();
-        setLeadSuccess(false);
-      }, 3000);
-    } catch (error) {
-      console.error("Lead creation error:", error);
-      setLeadError(
-        error.message || "Failed to submit. Please try again."
-      );
-      toast.error(
-        error.message || "Failed to submit. Please try again."
-      );
-    } finally {
-      setLeadSubmitting(false);
-    }
-  };
-
-  const canSubmit =
-    leadForm.first_name &&
-    leadForm.last_name &&
-    leadForm.email.includes("@") &&
-    leadForm.phone.length >= 7;
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <div data-testid="calc-result-view">
@@ -648,95 +583,31 @@ function ResultView({ result, form, onReset }) {
         <h2 className="font-heading text-3xl font-semibold text-[#0F2557] mb-3">
           Final Step
         </h2>
-        <p className="text-slate-600 mb-6">
-          Complete this short form and one of our licensed mortgage advisors
-          will contact you to discuss your personalized estimate.
+
+        <p className="text-slate-600 mb-2">
+          Your estimate is ready.
         </p>
 
-        {leadSuccess ? (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center"
-          >
-            <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
-            <p className="font-semibold text-emerald-900 text-lg">
-              Application Submitted!
-            </p>
-            <p className="text-emerald-700 text-sm mt-1">
-              A loan advisor will contact you within 24 hours.
-            </p>
-          </motion.div>
-        ) : (
-          <div className="space-y-4">
-            {leadError && (
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="bg-red-50 border border-red-200 rounded-xl p-4 flex gap-3"
-              >
-                <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                <p className="text-red-700 text-sm">{leadError}</p>
-              </motion.div>
-            )}
+        <p className="text-slate-600 mb-6">
+          Complete the form below so one of our licensed mortgage advisors can contact you.
+        </p>
 
-            <div className="grid sm:grid-cols-2 gap-3">
-              <Input
-                data-testid="lead-first-name"
-                placeholder="First name"
-                value={leadForm.first_name}
-                onChange={(e) => updateLeadForm("first_name", e.target.value)}
-                className="h-12"
-              />
-              <Input
-                data-testid="lead-last-name"
-                placeholder="Last name"
-                value={leadForm.last_name}
-                onChange={(e) => updateLeadForm("last_name", e.target.value)}
-                className="h-12"
-              />
-              <Input
-                data-testid="lead-email"
-                type="email"
-                placeholder="Email address"
-                value={leadForm.email}
-                onChange={(e) => updateLeadForm("email", e.target.value)}
-                className="h-12 sm:col-span-2"
-              />
-              <Input
-                data-testid="lead-phone"
-                placeholder="Phone number"
-                value={leadForm.phone}
-                onChange={(e) => updateLeadForm("phone", e.target.value)}
-                className="h-12 sm:col-span-2"
-              />
-            </div>
+        <p className="text-sm text-slate-500 mb-6">
+          Mortgage information fields are optional and may be updated if desired.
+        </p>
 
-            <p className="text-[11px] text-slate-400">
-              By submitting you consent to be contacted by Northcrest and our
-              licensed lending partners about your inquiry. This will not affect
-              your credit score.
-            </p>
-
-            <button
-              onClick={submitLead}
-              disabled={!canSubmit || leadSubmitting}
-              className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
-              data-testid="lead-submit-btn"
-            >
-              {leadSubmitting ? (
-                <>
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  Submitting…
-                </>
-              ) : (
-                <>
-                  Submit <ArrowRight className="w-4 h-4 ml-1" />
-                </>
-              )}
-            </button>
-          </div>
-        )}
+        <iframe
+          src="https://api.leadconnectorhq.com/widget/form/0vodT8LE8uNLmKeFbnvx"
+          id="inline-0vodT8LE8uNLmKeFbnvx"
+          title="Mortgage Qualification Form"
+          data-layout='{"id":"INLINE"}'
+          style={{
+            width: "100%",
+            height: "2000px",
+            border: "none",
+            borderRadius: "8px"
+          }}
+        />
       </div>
     </div>
   );
