@@ -3,11 +3,13 @@ import "@/App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
 import Landing from "@/pages/Landing";
+import ThankYou from "@/pages/ThankYou";
 
 function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
+      <Route path="/thank-you" element={<ThankYou />} />
       <Route path="*" element={<Landing />} />
     </Routes>
   );
