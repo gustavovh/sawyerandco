@@ -21,7 +21,7 @@ export default function FinalCTA() {
             >
               Get My Free Estimate <ArrowRight className="w-4 h-4" />
             </a>
-            <p className="mt-5 text-xs text-blue-200">Free · Secure · No impact on your credit score</p>
+            <p className="mt-5 text-xs text-blue-200">Free · Secure · Fast Pre-Qualification</p>
           </div>
         </div>
       </div>

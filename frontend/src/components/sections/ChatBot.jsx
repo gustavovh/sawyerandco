@@ -15,7 +15,7 @@ const CANNED_RESPONSES = {
   fha: "FHA loans are government-insured mortgages ideal for first-time buyers. Minimum 3.5% down with 580+ credit score. Loan limits vary by county.",
   va: "VA loans are available to eligible veterans, active service members, and surviving spouses. 0% down payment, no PMI, and competitive rates.",
   rate: "Today's average 30-year fixed rates range from 6.25% to 7.5% depending on credit profile and loan program. We'll match you with the best rate from our lender network.",
-  prequal: "Pre-qualification takes about 60 seconds and uses a soft credit pull — no impact to your score. Click 'Get Pre-Qualified' to start.",
+  prequal: "Pre-qualification takes about 60 seconds and uses a soft credit pull. Click 'Get Pre-Qualified' to start.",
   next: "Next steps: 1) Use our calculator for a budget. 2) Submit your info to get matched with a licensed loan officer. 3) Get a personalized rate quote. 4) Apply when you're ready.",
   default: "I'm your mortgage assistant. Ask me anything about loan programs, credit scores, down payments, rates, or how to qualify. (Note: this is a demo assistant with sample responses.)"
 };

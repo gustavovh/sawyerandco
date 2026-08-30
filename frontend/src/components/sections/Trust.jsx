@@ -3,7 +3,7 @@ import { ShieldCheck, BadgeCheck, MessageSquare, Award, Star } from "lucide-reac
 
 const ITEMS = [
   { icon: ShieldCheck, title: "Secure & Private", desc: "256-bit encryption. We never sell your data." },
-  { icon: BadgeCheck, title: "No Credit Impact", desc: "Soft pull only. Your FICO is untouched." },
+  { icon: BadgeCheck, title: "Fast Pre-Qualification", desc: "Simple & transparent process." },
   { icon: MessageSquare, title: "Free Consultation", desc: "Talk to a licensed officer at zero cost." },
   { icon: Award, title: "Licensed Partners", desc: "Vetted NMLS-licensed mortgage professionals." },
 ];
