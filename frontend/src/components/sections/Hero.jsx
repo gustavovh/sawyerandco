@@ -37,7 +37,7 @@ export default function Hero() {
 
           <div className="mt-8 flex items-center gap-6 text-sm text-slate-600">
             <div className="flex items-center gap-2" data-testid="hero-trust-1">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" /> No credit impact
+              <ShieldCheck className="w-4 h-4 text-emerald-600" /> Fast pre-qualification
             </div>
             <div className="flex items-center gap-2" data-testid="hero-trust-2">
               <div className="flex">

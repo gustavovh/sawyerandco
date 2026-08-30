@@ -341,7 +341,7 @@ async def chat(msg: ChatMessage):
     elif any(k in text for k in ["rate", "interest"]):
         reply = "Today's average 30-year fixed rates range from 6.25% to 7.5% depending on credit profile and loan program. We'll match you with the best rate from our lender network."
     elif any(k in text for k in ["pre-qual", "prequal", "qualify", "pre approval"]):
-        reply = "Pre-qualification takes about 60 seconds and uses a soft credit pull — no impact to your score. Click 'Get Pre-Qualified' to start."
+        reply = "Pre-qualification takes about 60 seconds and uses a soft credit pull. Click 'Get Pre-Qualified' to start."
     elif any(k in text for k in ["next", "step", "what now"]):
         reply = "Next steps: 1) Use our calculator for a budget. 2) Submit your info to get matched with a licensed loan officer. 3) Get a personalized rate quote. 4) Apply when you're ready."
     else:
