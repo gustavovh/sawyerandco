@@ -16,10 +16,8 @@ export default function Footer() {
               Connecting U.S. homebuyers with licensed mortgage professionals since 2018.
             </p>
             <div className="mt-5 space-y-2 text-sm">
-              <p className="flex items-center gap-2"><Mail className="w-3.5 h-3.5" /> hello@sawyerandco.example</p>
-              <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> 1-800-555-0199</p>
-              <p className="flex items-center gap-2"><MapPin className="w-3.5 h-3.5" /> Austin, TX · Remote U.S.</p>
-            </div>
+             <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> 1-385-534-8359</p>
+             </div>
           </div>
 
           <div>
