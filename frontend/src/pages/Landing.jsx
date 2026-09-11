@@ -4,7 +4,6 @@ import Hero from "../components/sections/Hero";
 import Calculator from "../components/sections/Calculator";   // <-- FALTA ESTA LÍNEA
 import Trust from "../components/sections/Trust";
 import Benefits from "../components/sections/Benefits";
-import LeadMagnet from "../components/sections/LeadMagnet";
 import Programs from "../components/sections/Programs";
 import FAQ from "../components/sections/FAQ";
 import FinalCTA from "../components/sections/FinalCTA";
@@ -29,7 +28,6 @@ export default function Landing() {
         <Calculator />
         <Trust />
         <Benefits />
-        <LeadMagnet />
         <Programs />
         <FAQ />
         <FinalCTA />
