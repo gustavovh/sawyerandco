@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 const LOGO_URL = "https://customer-assets.emergentagent.com/job_mortgage-prequalify/artifacts/19i5630p_image.png";
@@ -43,8 +44,7 @@ export default function Footer() {
           <div>
             <p className="font-heading font-semibold text-white mb-4">Legal</p>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" data-testid="footer-privacy" className="hover:text-white">Privacy Policy</a></li>
-              <li><a href="#" data-testid="footer-terms" className="hover:text-white">Terms of Service</a></li>
+              <li><Link to="/privacy-policy" data-testid="footer-privacy" className="hover:text-white">Privacy Policy</Link></li>
               <li><a href="#" className="hover:text-white">Licenses & Disclosures</a></li>
               <li><a href="#" className="hover:text-white">Contact</a></li>
             </ul>
