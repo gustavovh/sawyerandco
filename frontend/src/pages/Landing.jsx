@@ -9,7 +9,6 @@ import Programs from "../components/sections/Programs";
 import FAQ from "../components/sections/FAQ";
 import FinalCTA from "../components/sections/FinalCTA";
 import Footer from "../components/sections/Footer";
-import ChatBot from "../components/sections/ChatBot";
 
 export default function Landing() {
   useEffect(() => {
@@ -36,7 +35,6 @@ export default function Landing() {
         <FinalCTA />
       </main>
       <Footer />
-      <ChatBot />
     </div>
   );
 }
