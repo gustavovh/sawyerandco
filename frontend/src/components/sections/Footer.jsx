@@ -26,7 +26,6 @@ export default function Footer() {
               <li><a href="#calculator" className="hover:text-white">Affordability Calculator</a></li>
               <li><a href="#calculator" className="hover:text-white">Pre-Qualification</a></li>
               <li><a href="#programs" className="hover:text-white">Loan Programs</a></li>
-              <li><a href="#resources" className="hover:text-white">Free Guide</a></li>
             </ul>
           </div>
 
