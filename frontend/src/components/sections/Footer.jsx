@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0A1A3A] text-blue-100" data-testid="footer">
       <div className="container-x py-16">
-        <div className="grid md:grid-cols-4 gap-10">
+        <div className="grid md:grid-cols-3 gap-10">
           <div className="md:col-span-1">
             <div className="bg-white rounded-xl p-3 inline-block mb-4">
               <img src={LOGO_URL} alt="Sawyer & Company" className="h-24 w-auto object-contain" />
@@ -28,16 +28,6 @@ export default function Footer() {
               <li><a href="#calculator" className="hover:text-white">Affordability Calculator</a></li>
               <li><a href="#calculator" className="hover:text-white">Pre-Qualification</a></li>
               <li><a href="#programs" className="hover:text-white">Loan Programs</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <p className="font-heading font-semibold text-white mb-4">Resources</p>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#faq" className="hover:text-white">FAQ</a></li>
-              <li><a href="#" className="hover:text-white">Mortgage Glossary</a></li>
-              <li><a href="#" className="hover:text-white">Rate Updates</a></li>
-              <li><a href="#" className="hover:text-white">Blog</a></li>
             </ul>
           </div>
 
