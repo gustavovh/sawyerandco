@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle2, ArrowRight, Home } from "lucide-react";
 import Navbar from "../components/sections/Navbar";
 import Footer from "../components/sections/Footer";
 
 export default function ThankYou() {
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof window.fbq === "function") {
+      window.fbq("track", "Lead");
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white flex flex-col" data-testid="thank-you-page">
       <Navbar />
