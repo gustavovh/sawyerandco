@@ -34,6 +34,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-3">
           <Link to="/admin/login" data-testid="nav-admin-link" className="text-sm font-medium text-slate-600 hover:text-[#0F2557]">Admin</Link>
+          <a href="#get-quote" data-testid="nav-get-quote" className="btn-outline text-sm py-2.5 px-5">Get Quote</a>
           <a href="#calculator" data-testid="nav-cta" className="btn-primary text-sm py-2.5 px-5">Get Pre-Qualified</a>
         </div>
 
@@ -48,6 +49,7 @@ export default function Navbar() {
             {NAV.map((n) => (
               <a key={n.label} href={n.href} onClick={() => setOpen(false)} className="text-base font-medium text-slate-700">{n.label}</a>
             ))}
+            <a href="#get-quote" onClick={() => setOpen(false)} className="btn-outline text-center mt-2">Get Quote</a>
             <a href="#calculator" onClick={() => setOpen(false)} className="btn-primary text-center mt-2">Get Pre-Qualified</a>
             <Link to="/admin/login" className="text-sm text-slate-500">Admin</Link>
           </div>

@@ -18,6 +18,7 @@ export default function Footer() {
             <div className="mt-5 space-y-2 text-sm">
              <p className="flex items-center gap-2"><Phone className="w-3.5 h-3.5" /> 1-385-534-8359</p>
              </div>
+            <a href="#get-quote" data-testid="footer-get-quote" className="btn-primary text-sm py-2.5 px-5 mt-5 inline-flex">Get Quote</a>
           </div>
 
           <div>
