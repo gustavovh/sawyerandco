@@ -7,7 +7,6 @@ const LOGO_URL = "https://customer-assets.emergentagent.com/job_mortgage-prequal
 const NAV = [
   { label: "Calculator", href: "#calculator" },
   { label: "Programs", href: "#programs" },
-  { label: "Resources", href: "#resources" },
   { label: "FAQ", href: "#faq" },
 ];
 
