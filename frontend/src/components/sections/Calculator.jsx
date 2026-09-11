@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Slider } from "@/components/ui/slider";
@@ -467,6 +467,8 @@ export default function Calculator() {
 }
 
 function ResultView({ result, form, onReset }) {
+  const leadFormRef = useRef(null);
+
   useEffect(() => {
     const scriptId = "msgsndr-form-embed";
     if (document.getElementById(scriptId)) return;
@@ -475,6 +477,14 @@ function ResultView({ result, form, onReset }) {
     script.src = "https://link.msgsndr.com/js/form_embed.js";
     script.async = true;
     document.body.appendChild(script);
+  }, []);
+
+  // Auto-scroll to the lead form as soon as the result (and the form) render.
+  useEffect(() => {
+    const t = setTimeout(() => {
+      leadFormRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 400);
+    return () => clearTimeout(t);
   }, []);
 
 
@@ -575,7 +585,7 @@ function ResultView({ result, form, onReset }) {
 
       {/* ================= LEAD FORM ================= */}
 
-      <div className="mt-12 border-t pt-10">
+      <div ref={leadFormRef} className="mt-12 border-t pt-10">
         <h2 className="font-heading text-3xl font-semibold text-[#0F2557] mb-3">
           Final Step
         </h2>
