@@ -7,6 +7,7 @@ import Benefits from "../components/sections/Benefits";
 import Programs from "../components/sections/Programs";
 import FAQ from "../components/sections/FAQ";
 import FinalCTA from "../components/sections/FinalCTA";
+import GetQuoteForm from "../components/sections/GetQuoteForm";
 import Footer from "../components/sections/Footer";
 
 export default function Landing() {
@@ -31,6 +32,7 @@ export default function Landing() {
         <Programs />
         <FAQ />
         <FinalCTA />
+        <GetQuoteForm />
       </main>
       <Footer />
     </div>
