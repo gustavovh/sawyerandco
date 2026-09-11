@@ -30,8 +30,8 @@ export default function Hero() {
             <a href="#calculator" className="btn-primary text-base" data-testid="hero-cta-primary">
               Calculate My Budget <ArrowRight className="w-4 h-4" />
             </a>
-            <a href="#calculator" className="btn-outline text-base" data-testid="hero-cta-secondary">
-              Get Pre-Qualified
+            <a href="#get-quote" className="btn-outline text-base" data-testid="hero-cta-secondary">
+              Get Quote
             </a>
           </div>
 
